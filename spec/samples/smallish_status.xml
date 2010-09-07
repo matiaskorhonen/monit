@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<monit>
+  <server>
+    <id>52255a0b8999c46c98de9697a8daef67</id>
+    <incarnation>1283946152</incarnation>
+    <version>5.1.1</version>
+    <uptime>4</uptime>
+    <poll>30</poll>
+    <startdelay>0</startdelay>
+    <localhostname>Example.local</localhostname>
+    <controlfile>/etc/monitrc</controlfile>
+    <httpd>
+      <address/>
+      <port>2812</port>
+      <ssl>0</ssl>
+    </httpd>
+  </server>
+  <platform>
+    <name>Darwin</name>
+    <release>10.4.0</release>
+    <version>Darwin Kernel Version 10.4.0: Fri Apr 23 18:28:53 PDT 2010; root:xnu-1504.7.4~1/RELEASE_I386</version>
+    <machine>i386</machine>
+    <cpu>2</cpu>
+    <memory>4194304</memory>
+  </platform>
+  <service type="5">
+    <collected_sec>1283946152</collected_sec>
+    <collected_usec>309973</collected_usec>
+    <name>Example.local</name>
+    <status>0</status>
+    <status_hint>0</status_hint>
+    <monitor>1</monitor>
+    <monitormode>0</monitormode>
+    <pendingaction>0</pendingaction>
+    <groups>
+      <name>server</name>
+    </groups>
+    <system>
+      <load>
+        <avg01>0.28</avg01>
+        <avg05>0.43</avg05>
+        <avg15>0.48</avg15>
+      </load>
+      <cpu>
+        <user>10.0</user>
+        <system>4.1</system>
+      </cpu>
+      <memory>
+        <percent>44.1</percent>
+        <kilobyte>1850152</kilobyte>
+      </memory>
+    </system>
+  </service>
+</monit>
