@@ -4,7 +4,7 @@ module Monit
     attr_reader :address, :port, :ssl
         
     def initialize(options = {})
-      @address = options[address]
+      @address = options["address"]
       @port = options["port"].to_i
       @ssl = options["ssl"] == "1" ? true : false
     end
