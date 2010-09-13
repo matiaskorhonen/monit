@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Matias Korhonen"]
   s.email       = ["matias@kiskolabs.com"]
-  s.homepage    = "http://rubygems.org/gems/monit"
+  s.homepage    = "http://github.com/k33l0r/monit"
   s.summary     = "Connect to Monit"
   s.description = "Retrieve server information from Monit."
 
