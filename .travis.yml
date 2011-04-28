@@ -1,0 +1,3 @@
+script: "rake spec"
+rvm:
+  - 1.9.2

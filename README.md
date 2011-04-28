@@ -28,6 +28,6 @@ At the moment the gem is only compatible with Ruby 1.9.2.
 
 ## License and copyright
 
-Copyright (c) 2010 Matias Korhonen
+Copyright (c) 2010 - 2011 Matias Korhonen
 
 Licensed under the MIT license, see the LICENSE file for details.
