@@ -51,6 +51,7 @@ module Monit
         @xml = c.body_str
         return self.parse(@xml)
       else
+        puts c.response_code
         return false
       end
     end
@@ -61,15 +62,31 @@ module Monit
       @server = Server.new(@hash["monit"]["server"])
       @platform = Platform.new(@hash["monit"]["platform"])
       if @hash["monit"]["service"].is_a? Array
-        @services = @hash["monit"]["service"].map do |service|
-          Service.new(service)
+        @services = @hash["monit"]["service"].map do |service_xml|
+        	service = Service.new(service_xml)
+		if Monit::Service::TYPES[service.type.to_i] == "Daemon"
+			options ={ 
+				:host => @host, 
+				:port => @port, 
+				:username => @username, 
+				:password => @password,
+				:auth => @auth,
+				:ssl => @ssl
+			}
+			[:start, :stop, :restart].each do |action|
+				service.define_monit_action(action, options) unless service.respond_to? action
+			end
+		end
+		service
         end
       else
         @services = [Service.new(@hash["monit"]["service"])]
       end
       true
-    rescue
+    rescue Exception => e
+	    puts e.message
       false
     end
+
   end
 end

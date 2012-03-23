@@ -30,8 +30,6 @@ PLATFORMS
 DEPENDENCIES
   awesome_print
   bundler (~> 1.0.0)
-  crack (~> 0.1.8)
-  curb (~> 0.7.8)
   monit!
   rake
   rspec (~> 2.0.0.beta.20)
