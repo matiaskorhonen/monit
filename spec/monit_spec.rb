@@ -159,7 +159,7 @@ describe Monit do
       service.pendingaction.should == "0"
       service.groups.should be_kind_of Hash
       service.system.should be_kind_of Hash
-      service.type.should == "5"
+      service.service_type.should == "5"
     end
   end
 end
