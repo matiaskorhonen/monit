@@ -8,12 +8,12 @@ Gem::Specification.new do |gem|
   gem.summary     = "Connect to Monit"
   gem.description = "Retrieve server information from Monit."
 
-  gem.name        = "monit"
+  gem.name          = "monit"
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   gem.files         = `git ls-files`.split("\n")
   gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.require_paths = ["lib"]
-  gem.version     = Monit::VERSION
+  gem.version       = Monit::VERSION
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "bundler"
@@ -21,5 +21,4 @@ Gem::Specification.new do |gem|
 
   gem.add_runtime_dependency "nokogiri", "~> 1.5.2"
   gem.add_runtime_dependency "activesupport", "~> 3.2.2"
-  gem.add_runtime_dependency "jruby-openssl", "~> 0.7.6.1" if RUBY_PLATFORM =~  /java/
 end
