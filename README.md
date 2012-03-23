@@ -24,7 +24,7 @@ For more options see the API documentation
 
 ## Compatibility
 
-At the moment the gem is only compatible with Ruby 1.9.2.
+At the moment the gem is only compatible with Ruby 1.9.2 and above.
 
 ## License and copyright
 

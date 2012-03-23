@@ -1,27 +1,24 @@
 # -*- encoding: utf-8 -*-
 require File.expand_path("../lib/monit/version", __FILE__)
 
-Gem::Specification.new do |s|
-  s.name        = "monit"
-  s.version     = Monit::VERSION
-  s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Matias Korhonen"]
-  s.email       = ["matias@kiskolabs.com"]
-  s.homepage    = "http://github.com/k33l0r/monit"
-  s.summary     = "Connect to Monit"
-  s.description = "Retrieve server information from Monit."
+Gem::Specification.new do |gem|
+  gem.authors     = ["Matias Korhonen"]
+  gem.email       = ["matias@kiskolabgem.com"]
+  gem.homepage    = "http://github.com/k33l0r/monit"
+  gem.summary     = "Connect to Monit"
+  gem.description = "Retrieve server information from Monit."
 
-  s.required_rubygems_version = ">= 1.3.6"
-  s.rubyforge_project         = "monit"
+  gem.name        = "monit"
+  gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  gem.files         = `git ls-files`.split("\n")
+  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
+  gem.require_paths = ["lib"]
+  gem.version     = Monit::VERSION
 
-  s.add_development_dependency "rake"
-  s.add_development_dependency "rspec", "~> 2.9.0"
-  s.add_development_dependency "awesome_print"
-  
-  s.add_dependency "crack", "~> 0.1.8"
-  s.add_dependency "curb", "~> 0.7.8"
+  gem.add_development_dependency "rake"
+  gem.add_development_dependency "bundler"
+  gem.add_development_dependency "rspec", "~> 2.9.0"
 
-  s.files        = `git ls-files`.split("\n")
-  s.executables  = `git ls-files`.split("\n").map{|f| f =~ /^bin\/(.*)/ ? $1 : nil}.compact
-  s.require_path = 'lib'
+  gem.add_runtime_dependency "crack", "~> 0.3.1"
+  gem.add_runtime_dependency "jruby-openssl", "~> 0.7.6.1" if RUBY_PLATFORM =~  /java/
 end

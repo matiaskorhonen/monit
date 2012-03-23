@@ -4,4 +4,3 @@ Bundler.setup
 
 require "rspec"
 require "monit"
-
