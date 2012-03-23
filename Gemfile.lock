@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    monit (0.1.2)
+    monit (0.2.0)
       activesupport (~> 3.2.2)
       jruby-openssl (~> 0.7.6.1)
       nokogiri (~> 1.5.2)
