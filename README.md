@@ -20,6 +20,10 @@ Just like any other gem:
     status.platform.cpu     # => 2
     status.platform.memory  # => 4057712
 
+    ### start/stop/restart of Services
+    
+    status.service.restart if status.service.respond_to? :restart
+
 For more options see the API documentation
 
 ## Compatibility
