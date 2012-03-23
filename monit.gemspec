@@ -14,9 +14,8 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = ">= 1.3.6"
   s.rubyforge_project         = "monit"
 
-  s.add_development_dependency "bundler", "~> 1.0.0"
   s.add_development_dependency "rake"
-  s.add_development_dependency "rspec", "~> 2.0.0.beta.20"
+  s.add_development_dependency "rspec", "~> 2.9.0"
   s.add_development_dependency "awesome_print"
   
   s.add_dependency "crack", "~> 0.1.8"
