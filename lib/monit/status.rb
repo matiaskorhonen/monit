@@ -1,4 +1,6 @@
-require "crack/xml"
+#require "crack/xml"
+require "active_support/xml_mini"
+require "active_support/core_ext/hash/conversions"
 require "net/http"
 require "net/https"
 require "uri"
@@ -8,6 +10,8 @@ module Monit
   # The +Status+ class is used to get data from the Monit instance. You should not
   # need to manually instantiate any of the other classes.
   class Status
+    ::ActiveSupport::XmlMini.backend = "Nokogiri"
+
     attr_reader :url, :hash, :xml, :server, :platform, :services
     attr_accessor :username, :auth, :host, :port, :ssl, :auth, :username
     attr_writer :password
@@ -67,7 +71,7 @@ module Monit
 
     # Parse the XML from Monit into a hash and into a Ruby representation.
     def parse(xml)
-      @hash = Crack::XML.parse(xml)
+      @hash = Hash.from_xml(xml)
       @server = Server.new(@hash["monit"]["server"])
       @platform = Platform.new(@hash["monit"]["platform"])
       if @hash["monit"]["service"].is_a? Array

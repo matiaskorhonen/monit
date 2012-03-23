@@ -2,17 +2,23 @@ PATH
   remote: .
   specs:
     monit (0.1.2)
-      crack (~> 0.3.1)
+      activesupport (~> 3.2.2)
       jruby-openssl (~> 0.7.6.1)
+      nokogiri (~> 1.5.2)
 
 GEM
   remote: http://rubygems.org/
   specs:
+    activesupport (3.2.2)
+      i18n (~> 0.6)
+      multi_json (~> 1.0)
     bouncy-castle-java (1.5.0146.1)
-    crack (0.3.1)
     diff-lcs (1.1.3)
+    i18n (0.6.0)
     jruby-openssl (0.7.6.1)
       bouncy-castle-java (>= 1.5.0146.1)
+    multi_json (1.1.0)
+    nokogiri (1.5.2-java)
     rake (0.8.7)
     rspec (2.9.0)
       rspec-core (~> 2.9.0)

@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "bundler"
   gem.add_development_dependency "rspec", "~> 2.9.0"
 
-  gem.add_runtime_dependency "crack", "~> 0.3.1"
+  gem.add_runtime_dependency "nokogiri", "~> 1.5.2"
+  gem.add_runtime_dependency "activesupport", "~> 3.2.2"
   gem.add_runtime_dependency "jruby-openssl", "~> 0.7.6.1" if RUBY_PLATFORM =~  /java/
 end
