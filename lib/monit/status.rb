@@ -1,4 +1,5 @@
 #require "crack/xml"
+require "active_support/json"
 require "active_support/xml_mini"
 require "active_support/core_ext/hash/conversions"
 require "net/http"
