@@ -1,6 +1,9 @@
 # -*- encoding: utf-8 -*-
 require "spec_helper"
 
+SMALLISH_STATUS_PATH  = File.expand_path("../samples/smallish_status.xml", __FILE__)
+LARGISH_STATUS_PATH   = File.expand_path("../samples/largish_status.xml", __FILE__)
+
 describe Monit do
   context "Status" do
     it "should be possible to instatiate it with no options" do
@@ -29,7 +32,7 @@ describe Monit do
     
     it "should parse XML into a Hash" do
       status = Monit::Status.new
-      status.stub!(:xml).and_return(File.read("./spec/samples/smallish_status.xml"))
+      status.stub!(:xml).and_return(File.read(SMALLISH_STATUS_PATH))
       status.parse(status.xml)
       status.hash.should be_kind_of Hash
       status.hash["monit"].should_not be_nil
@@ -37,7 +40,7 @@ describe Monit do
       status.hash["monit"]["platform"].should_not be_nil
       status.hash["monit"]["service"].should_not be_nil
       
-      status.stub!(:xml).and_return(File.read("./spec/samples/largish_status.xml"))
+      status.stub!(:xml).and_return(File.read(LARGISH_STATUS_PATH))
       status.parse(status.xml)
       status.hash.should be_kind_of Hash
       status.hash["monit"].should_not be_nil
@@ -48,7 +51,7 @@ describe Monit do
     
     it "should parse XML into a Ruby representation" do
       status = Monit::Status.new
-      status.stub!(:xml).and_return(File.read("./spec/samples/smallish_status.xml"))
+      status.stub!(:xml).and_return(File.read(SMALLISH_STATUS_PATH))
       status.parse(status.xml)
       
       status.server.should be_kind_of Monit::Server
@@ -58,7 +61,7 @@ describe Monit do
       status.services.first.should be_kind_of Monit::Service
       status.services.first.should be_kind_of OpenStruct
       
-      status.stub!(:xml).and_return(File.read("./spec/samples/largish_status.xml"))
+      status.stub!(:xml).and_return(File.read(LARGISH_STATUS_PATH))
       status.parse(status.xml)
       
       status.server.should be_kind_of Monit::Server
@@ -159,7 +162,7 @@ describe Monit do
       service.pendingaction.should == "0"
       service.groups.should be_kind_of Hash
       service.system.should be_kind_of Hash
-      service.type.should == "5"
+      service.service_type.should == "5"
     end
   end
 end

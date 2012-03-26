@@ -27,12 +27,17 @@ Just like any other gem:
 
 For more options see the API documentation
 
-## Compatibility
+## Compatibility and Build Status
 
-At the moment the gem is only compatible with Ruby 1.9.2.
+[![Build Status](https://secure.travis-ci.org/k33l0r/monit.png)](http://travis-ci.org/k33l0r/monit)
+
+The gem is only compatible with Ruby 1.8.7 and above, including JRuby 1.6+.
+For the build status, check [Travis CI][travis].
+
+[travis]: http://travis-ci.org/k33l0r/monit
 
 ## License and copyright
 
-Copyright (c) 2010 - 2011 Matias Korhonen
+Copyright (c) 2010 - 2012 Matias Korhonen
 
 Licensed under the MIT license, see the LICENSE file for details.
