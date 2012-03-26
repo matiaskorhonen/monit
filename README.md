@@ -20,6 +20,11 @@ Just like any other gem:
     status.platform.cpu     # => 2
     status.platform.memory  # => 4057712
 
+		# => start/stop/restart/monitor/unmonitor
+		status.services.each do |service|
+			service.stop
+		end
+
 For more options see the API documentation
 
 ## Compatibility and Build Status
