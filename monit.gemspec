@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path("../lib/monit/version", __FILE__)
+$:.unshift File.expand_path("../lib", __FILE__)
+require "monit/version"
 
 Gem::Specification.new do |gem|
   gem.authors     = ["Matias Korhonen"]
