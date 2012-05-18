@@ -33,6 +33,6 @@ For the build status, check [Travis CI][travis].
 
 ## License and copyright
 
-Copyright (c) 2010 - 2012 Matias Korhonen
+Copyright (c) 2010 - 2012 Matias Korhonen & contributors
 
 Licensed under the MIT license, see the LICENSE file for details.
