@@ -20,10 +20,10 @@ Just like any other gem:
     status.platform.cpu     # => 2
     status.platform.memory  # => 4057712
 
-		# => start/stop/restart/monitor/unmonitor
-		status.services.each do |service|
-			service.stop
-		end
+    # => start/stop/restart/monitor/unmonitor
+    status.services.each do |service|
+      service.stop!
+    end
 
 For more options see the API documentation
 
@@ -38,6 +38,6 @@ For the build status, check [Travis CI][travis].
 
 ## License and copyright
 
-Copyright (c) 2010 - 2012 Matias Korhonen & contributors
+Copyright (c) 2010 - 2013 Matias Korhonen & contributors
 
 Licensed under the MIT license, see the LICENSE file for details.
