@@ -16,34 +16,34 @@ module Monit
       super(hash)
     end
 
-		def url path
+    def url path
       url_params = { :host => @host, :port => @port, :path => "/#{path}" }
       @ssl ? URI::HTTPS.build(url_params) : URI::HTTP.build(url_params)
-		end
+    end
 
-		def start
-			return self.do :start
-		end
+    def start!
+      self.do :start
+    end
 
-		def stop
-			return self.do :stop
-		end
+    def stop!
+      self.do :stop
+    end
 
-		def restart
-			return self.do :restart
-		end
+    def restart!
+      self.do :restart
+    end
 
-		def monitor
-			return self.do :monitor
-		end
+    def monitor!
+      self.do :monitor
+    end
 
-		def unmonitor
-			return self.do :unmonitor
-		end
+    def unmonitor!
+      self.do :unmonitor
+    end
 
-		def do action
-			uri = self.url self.name
-			http = Net::HTTP.new(uri.host, uri.port)
+    def do(action)
+      uri = self.url self.name
+      http = Net::HTTP.new(uri.host, uri.port)
 
       if @ssl
         http.use_ssl = true
@@ -51,7 +51,7 @@ module Monit
       end
 
       request = Net::HTTP::Post.new(uri.request_uri)
-			request.body = "action=#{action}"
+      request.body = "action=#{action}"
 
       if @auth
         request.basic_auth(@username, @password)
@@ -59,14 +59,13 @@ module Monit
 
       request["User-Agent"] = "Monit Ruby client #{Monit::VERSION}"
 
-      response = http.request(request)
-
-      if response.code == "200"
-        return true
-      else
-        return false
+      begin
+        response = http.request(request)
+        response.code == "200"
+      rescue Errno::ECONNREFUSED => e
+        false
       end
-		end
+    end
 
     private
     # Renames the Service type from "type" to "service_type" to avoid conflicts
