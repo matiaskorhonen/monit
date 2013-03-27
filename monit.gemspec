@@ -4,7 +4,7 @@ require "monit/version"
 
 Gem::Specification.new do |gem|
   gem.authors     = ["Matias Korhonen"]
-  gem.email       = ["matias@kiskolabgem.com"]
+  gem.email       = ["me@matiaskorhonen.fi"]
   gem.homepage    = "http://github.com/k33l0r/monit"
   gem.summary     = "Connect to Monit"
   gem.description = "Retrieve server information from Monit."
