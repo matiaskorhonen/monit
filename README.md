@@ -29,7 +29,7 @@ For more options see the API documentation
 
 ## Compatibility and Build Status
 
-[![Build Status](https://secure.travis-ci.org/k33l0r/monit.png)](http://travis-ci.org/k33l0r/monit) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/k33l0r/monit)
+[![Build Status](https://travis-ci.org/k33l0r/monit.png)](https://travis-ci.org/k33l0r/monit) [![Code Climate](https://codeclimate.com/github/k33l0r/monit.png)](https://codeclimate.com/github/k33l0r/monit)
 
 The gem is only compatible with Ruby 1.8.7 and above, including JRuby 1.6+.
 For the build status, check [Travis CI][travis].
@@ -38,6 +38,6 @@ For the build status, check [Travis CI][travis].
 
 ## License and copyright
 
-Copyright (c) 2010 - 2013 Matias Korhonen & contributors
+Copyright © 2010 - 2013 Matias Korhonen & contributors
 
 Licensed under the MIT license, see the LICENSE file for details.
