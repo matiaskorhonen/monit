@@ -1,4 +1,5 @@
 #require "crack/xml"
+require "active_support/json"
 require "active_support/xml_mini"
 require "active_support/core_ext/hash/conversions"
 require "net/http"
@@ -74,12 +75,21 @@ module Monit
       @hash = Hash.from_xml(xml)
       @server = Server.new(@hash["monit"]["server"])
       @platform = Platform.new(@hash["monit"]["platform"])
+
+			options = { 
+				:host => @host, 
+				:port => @port, 
+				:ssl => @ssl, 
+				:auth => @auth, 
+				:username => @username, 
+				:password => @password }
+
       if @hash["monit"]["service"].is_a? Array
         @services = @hash["monit"]["service"].map do |service|
-          Service.new(service)
+          Service.new(service, options)
         end
       else
-        @services = [Service.new(@hash["monit"]["service"])]
+        @services = [Service.new(@hash["monit"]["service"], options)]
       end
       true
     rescue
