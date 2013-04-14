@@ -11,9 +11,9 @@ Just like any other gem:
 
 ## Usage
 
-    status = Monit::Status.new({ :host => "monit.myserver.com", 
-                                 :auth => true, 
-                                 :username => "foo", 
+    status = Monit::Status.new({ :host => "monit.myserver.com",
+                                 :auth => true,
+                                 :username => "foo",
                                  :password => "bar" })
     status.get              # => true
     status.platform         # => <Monit::Platform:0x00000003673dd0 ... >
