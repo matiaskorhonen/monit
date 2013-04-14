@@ -205,18 +205,18 @@ describe Monit do
 
     describe "#do" do
       it "returns true if the response code is 2xx" do
-        stub_request(:any, /localhost/).to_return(status: 200)
+        stub_request(:any, /localhost/).to_return(:status => 200)
         service.do(:start).should == true
-        stub_request(:any, /localhost/).to_return(status: 201)
+        stub_request(:any, /localhost/).to_return(:status => 201)
         service.do(:start).should == true
       end
 
       it "returns false if the response code is not 2xx" do
-        stub_request(:any, /localhost/).to_return(status: 500)
+        stub_request(:any, /localhost/).to_return(:status => 500)
         service.do(:start).should == false
-        stub_request(:any, /localhost/).to_return(status: 400)
+        stub_request(:any, /localhost/).to_return(:status => 400)
         service.do(:start).should == false
-        stub_request(:any, /localhost/).to_return(status: 302)
+        stub_request(:any, /localhost/).to_return(:status => 302)
         service.do(:start).should == false
       end
     end
