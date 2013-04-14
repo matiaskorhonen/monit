@@ -5,7 +5,7 @@ SMALLISH_STATUS_PATH  = File.expand_path("../samples/smallish_status.xml", __FIL
 LARGISH_STATUS_PATH   = File.expand_path("../samples/largish_status.xml", __FILE__)
 
 describe Monit do
-  context "Status" do
+  describe "Status" do
     it "should be possible to instatiate it with no options" do
       @status = Monit::Status.new
       @status.should be_kind_of Monit::Status
@@ -73,7 +73,7 @@ describe Monit do
     end
   end
   
-  context "Server" do
+  describe "Server" do
     it "should create a new instance of Monit::Server from a hash" do
       hash = {         "id" => "52255a0b8999c46c98de9697a8daef67",
               "incarnation" => "1283946152",
@@ -99,7 +99,7 @@ describe Monit do
     end
   end
   
-  context "HTTPD" do
+  describe "HTTPD" do
     it "should create a new instance of Monit::HTTPD from a hash" do
       hash = { "address" => nil,
                   "port" => "2812",
@@ -111,7 +111,7 @@ describe Monit do
     end
   end
   
-  context "Platform" do
+  describe "Platform" do
     it "should create a new instance of Monit::Platform from a hash" do
       hash = { "name" => "Darwin",
             "release" => "10.4.0",
@@ -129,8 +129,8 @@ describe Monit do
     end
   end
   
-  context "Service" do
-    it "should create a new instance of Monit::Platform from a hash" do
+  describe "Service" do
+    let(:service) do
       hash = { "collected_sec" => "1283946152",
               "collected_usec" => "309973",
                         "name" => "Example.local",
@@ -149,7 +149,10 @@ describe Monit do
                                                "kilobyte" => "1850152" }
                                   },
                         "type" => "5" }
-      service = Monit::Service.new(hash)
+      Monit::Service.new(hash) 
+    end
+
+    it "should create a new instance of Monit::Platform from a hash" do
       service.should be_kind_of OpenStruct
       service.should be_kind_of Monit::Service
       service.collected_sec.should == "1283946152"
@@ -163,6 +166,59 @@ describe Monit do
       service.groups.should be_kind_of Hash
       service.system.should be_kind_of Hash
       service.service_type.should == "5"
+    end
+
+    describe "#start!" do
+      it "sends :start to #do" do
+        service.stub(:do).with(:start)
+        service.start!
+      end
+    end
+
+    describe "#stop!" do
+      it "sends :stop to #do" do
+        service.stub(:do).with(:stop)
+        service.stop!
+      end
+    end
+
+    describe "#restart!" do
+      it "sends :restart to #do" do
+        service.stub(:do).with(:restart)
+        service.restart!
+      end
+    end
+
+    describe "#monitor!" do
+      it "sends :monitor to #do" do
+        service.stub(:do).with(:monitor)
+        service.monitor!
+      end
+    end
+
+    describe "#unmonitor!" do
+      it "sends :unmonitor to #do" do
+        service.stub(:do).with(:unmonitor)
+        service.unmonitor!
+      end
+    end
+
+    describe "#do" do
+      it "returns true if the response code is 2xx" do
+        stub_request(:any, /localhost/).to_return(status: 200)
+        service.do(:start).should == true
+        stub_request(:any, /localhost/).to_return(status: 201)
+        service.do(:start).should == true
+      end
+
+      it "returns false if the response code is not 2xx" do
+        stub_request(:any, /localhost/).to_return(status: 500)
+        service.do(:start).should == false
+        stub_request(:any, /localhost/).to_return(status: 400)
+        service.do(:start).should == false
+        stub_request(:any, /localhost/).to_return(status: 302)
+        service.do(:start).should == false
+      end
     end
   end
 end

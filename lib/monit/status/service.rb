@@ -16,29 +16,29 @@ module Monit
       super(hash)
     end
 
-    def url(path)
+    def url path
       url_params = { :host => @host, :port => @port, :path => "/#{path}" }
       @ssl ? URI::HTTPS.build(url_params) : URI::HTTP.build(url_params)
     end
 
-    def start!
-      self.do :start
+    def start
+      return self.do :start
     end
 
-    def stop!
-      self.do :stop
+    def stop
+      return self.do :stop
     end
 
-    def restart!
-      self.do :restart
+    def restart
+      return self.do :restart
     end
 
-    def monitor!
-      self.do :monitor
+    def monitor
+      return self.do :monitor
     end
 
-    def unmonitor!
-      self.do :unmonitor
+    def unmonitor
+      return self.do :unmonitor
     end
 
     def do(action)
@@ -59,11 +59,12 @@ module Monit
 
       request["User-Agent"] = "Monit Ruby client #{Monit::VERSION}"
 
-      begin
-        response = http.request(request)
-        !!(response.code =~ /\A2\d\d\z/)
-      rescue Errno::ECONNREFUSED => e
-        false
+      response = http.request(request)
+
+      if response.code == "200"
+        return true
+      else
+        return false
       end
     end
 
