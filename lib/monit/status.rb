@@ -62,7 +62,7 @@ module Monit
 
       response = http.request(request)
 
-      if response.code == "200"
+      if (response.code =~ /\A2\d\d\z/)
         @xml = response.body
         return self.parse(@xml)
       else
@@ -76,13 +76,13 @@ module Monit
       @server = Server.new(@hash["monit"]["server"])
       @platform = Platform.new(@hash["monit"]["platform"])
 
-			options = { 
-				:host => @host, 
-				:port => @port, 
-				:ssl => @ssl, 
-				:auth => @auth, 
-				:username => @username, 
-				:password => @password }
+      options = { 
+        :host => @host, 
+        :port => @port, 
+        :ssl => @ssl, 
+        :auth => @auth, 
+        :username => @username, 
+        :password => @password }
 
       if @hash["monit"]["service"].is_a? Array
         @services = @hash["monit"]["service"].map do |service|
