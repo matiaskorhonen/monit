@@ -38,7 +38,7 @@ module Monit
 
     # Construct the URL
     def url
-      url_params = { :host => @host, :port => @port, :path => "/_status", :query => "format=xml" }
+      url_params = { :host => @host, :port => @port.to_i, :path => "/_status", :query => "format=xml" }
       @ssl ? URI::HTTPS.build(url_params) : URI::HTTP.build(url_params)
     end
 
