@@ -27,10 +27,10 @@ module Monit
     # * +username+ - username for authentication
     # * +password+ - password for authentication
     def initialize(options = {})
-      @host ||= options[:host] ||= "localhost"
-      @port ||= options[:port] ||= 2812
-      @ssl  ||= options[:ssl]  ||= false
-      @auth ||= options[:auth] ||= false
+      @host     = options[:host]    || "localhost"
+      @port     = (options[:port]    || 2812).to_i
+      @ssl      = options[:ssl]     || false
+      @auth     = options[:auth]    || false
       @username = options[:username]
       @password = options[:password]
       @services = []
@@ -38,7 +38,7 @@ module Monit
 
     # Construct the URL
     def url
-      url_params = { :host => @host, :port => @port.to_i, :path => "/_status", :query => "format=xml" }
+      url_params = { :host => @host, :port => @port, :path => "/_status", :query => "format=xml" }
       @ssl ? URI::HTTPS.build(url_params) : URI::HTTP.build(url_params)
     end
 
