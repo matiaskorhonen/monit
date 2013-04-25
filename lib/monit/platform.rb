@@ -2,7 +2,7 @@ module Monit
   # The platform section from the Monit XML
   class Platform
     attr_reader :name, :release, :version, :machine, :cpu, :memory
-    
+
     def initialize(options = {})
       @name = options["name"]
       @release = options["release"]

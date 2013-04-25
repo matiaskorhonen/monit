@@ -28,7 +28,7 @@ module Monit
     # * +password+ - password for authentication
     def initialize(options = {})
       @host     = options[:host]    || "localhost"
-      @port     = (options[:port]    || 2812).to_i
+      @port     = (options[:port]   || 2812).to_i
       @ssl      = options[:ssl]     || false
       @auth     = options[:auth]    || false
       @username = options[:username]
@@ -72,17 +72,18 @@ module Monit
 
     # Parse the XML from Monit into a hash and into a Ruby representation.
     def parse(xml)
-      @hash = Hash.from_xml(xml)
-      @server = Server.new(@hash["monit"]["server"])
+      @hash     = Hash.from_xml(xml)
+      @server   = Server.new(@hash["monit"]["server"])
       @platform = Platform.new(@hash["monit"]["platform"])
 
-      options = { 
-        :host => @host, 
-        :port => @port, 
-        :ssl => @ssl, 
-        :auth => @auth, 
-        :username => @username, 
-        :password => @password }
+      options = {
+        :host     => @host,
+        :port     => @port,
+        :ssl      => @ssl,
+        :auth     => @auth,
+        :username => @username,
+        :password => @password
+      }
 
       if @hash["monit"]["service"].is_a? Array
         @services = @hash["monit"]["service"].map do |service|
