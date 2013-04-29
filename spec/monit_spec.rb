@@ -172,53 +172,53 @@ describe Monit do
       it "sends :start to #do" do
         service.stub(:do).with(:start)
         service.start!
-        end
+      end
+    end
+
+    describe "#stop!" do
+      it "sends :stop to #do" do
+        service.stub(:do).with(:stop)
+        service.stop!
+      end
+    end
+
+    describe "#restart!" do
+      it "sends :restart to #do" do
+        service.stub(:do).with(:restart)
+        service.restart!
+      end
+    end
+
+    describe "#monitor!" do
+      it "sends :monitor to #do" do
+        service.stub(:do).with(:monitor)
+        service.monitor!
+      end
+    end
+
+    describe "#unmonitor!" do
+      it "sends :unmonitor to #do" do
+        service.stub(:do).with(:unmonitor)
+        service.unmonitor!
+      end
+    end
+
+    describe "#do" do
+      it "returns true if the response code is 2xx" do
+        stub_request(:any, /localhost/).to_return(:status => 200)
+        service.do(:start).should == true
+        stub_request(:any, /localhost/).to_return(:status => 201)
+        service.do(:start).should == true
       end
 
-      describe "#stop!" do
-        it "sends :stop to #do" do
-          service.stub(:do).with(:stop)
-          service.stop!
-          end
-        end
-
-        describe "#restart!" do
-          it "sends :restart to #do" do
-            service.stub(:do).with(:restart)
-            service.restart!
-            end
-          end
-
-          describe "#monitor!" do
-            it "sends :monitor to #do" do
-              service.stub(:do).with(:monitor)
-              service.monitor!
-              end
-            end
-
-            describe "#unmonitor!" do
-              it "sends :unmonitor to #do" do
-                service.stub(:do).with(:unmonitor)
-                service.unmonitor!
-                end
-              end
-
-              describe "#do" do
-                it "returns true if the response code is 2xx" do
-                  stub_request(:any, /localhost/).to_return(:status => 200)
-                  service.do(:start).should == true
-                  stub_request(:any, /localhost/).to_return(:status => 201)
-                  service.do(:start).should == true
-                  end
-
-                  it "returns false if the response code is not 2xx" do
-                    stub_request(:any, /localhost/).to_return(:status => 500)
-                    service.do(:start).should == false
-                    stub_request(:any, /localhost/).to_return(:status => 400)
-                    service.do(:start).should == false
-                    stub_request(:any, /localhost/).to_return(:status => 302)
-                    service.do(:start).should == false
-                    end
-                    end
-                    end
-                  end
+      it "returns false if the response code is not 2xx" do
+        stub_request(:any, /localhost/).to_return(:status => 500)
+        service.do(:start).should == false
+        stub_request(:any, /localhost/).to_return(:status => 400)
+        service.do(:start).should == false
+        stub_request(:any, /localhost/).to_return(:status => 302)
+        service.do(:start).should == false
+      end
+    end
+  end
+end
