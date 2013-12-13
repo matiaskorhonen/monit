@@ -60,7 +60,11 @@ module Monit
 
       request["User-Agent"] = "Monit Ruby client #{Monit::VERSION}"
 
-      response = http.request(request)
+      begin
+        response = http.request(request)
+      rescue Errno::ECONNREFUSED
+        return false
+      end
 
       if (response.code =~ /\A2\d\d\z/)
         @xml = response.body
