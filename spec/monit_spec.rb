@@ -3,7 +3,6 @@ require "spec_helper"
 
 SMALLISH_STATUS_PATH  = File.expand_path("../samples/smallish_status.xml", __FILE__)
 LARGISH_STATUS_PATH   = File.expand_path("../samples/largish_status.xml", __FILE__)
-EXEC_FAILED_STATUS_PATH   = File.expand_path("../samples/exec_failed_status.xml", __FILE__)
 
 describe Monit do
   describe "Status" do
