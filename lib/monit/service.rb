@@ -50,6 +50,16 @@ module Monit
       end
     end
 
+    def has_errors?(code = nil, exact = false)
+      if code.nil? or code == 0
+        self.status.to_i != 0 and self.status_hint.to_i == 0
+      elsif exact
+        self.status.to_i == code and self.status_hint.to_i == 0
+      else
+        (self.status.to_i & code) != 0 and (self.status_hint.to_i & code) == 0
+      end
+    end
+
     private
     # Renames the Service type from "type" to "service_type" to avoid conflicts
     def rename_service_type(hash)
