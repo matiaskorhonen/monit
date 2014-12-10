@@ -21,6 +21,6 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency "rspec", "~> 2.9.0"
   gem.add_development_dependency "webmock", "~> 1.11.0"
 
-  gem.add_runtime_dependency "nokogiri", "~> 1.5.2"
-  gem.add_runtime_dependency "activesupport", "~> 3.2.12"
+  gem.add_runtime_dependency "nokogiri", "~> 1.5"
+  gem.add_runtime_dependency "activesupport", ">= 3.2.12"
 end
