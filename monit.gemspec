@@ -8,6 +8,7 @@ Gem::Specification.new do |gem|
   gem.homepage    = "http://github.com/k33l0r/monit"
   gem.summary     = "Connect to Monit"
   gem.description = "Retrieve server information from Monit."
+  gem.license     = 'MIT'
 
   gem.name          = "monit"
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
