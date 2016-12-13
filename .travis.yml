@@ -2,8 +2,9 @@ script: "bundle exec rake spec"
 language: ruby
 sudo: false
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.1
-  - jruby-19mode
-  - rbx
+  - 2.2
+  - 2.3
+  - ruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
