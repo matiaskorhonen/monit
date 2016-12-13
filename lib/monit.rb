@@ -1,3 +1,4 @@
+require "monit/constants"
 require "monit/httpd"
 require "monit/platform"
 require "monit/server"

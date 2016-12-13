@@ -220,5 +220,35 @@ describe Monit do
         service.do(:start).should == false
       end
     end
+
+    describe "status checking" do
+      it "should not has errors" do
+        service.has_errors?.should == false
+        service.has_errors?(0).should == false
+        service.has_errors?(0, true).should == false
+      end
+
+      it "should has execution failed errors" do
+        # execution failed errors
+        service.status = "4608"
+        service.status_hint = "0"
+
+        service.has_errors?.should == true
+        service.has_errors?(Monit::STATUS_EXEC).should == true
+        service.has_errors?(Monit::STATUS_NONEXIST).should == true
+        service.has_errors?(Monit::STATUS_EXEC | Monit::STATUS_NONEXIST).should == true
+        service.has_errors?(Monit::STATUS_EXEC, true).should == false
+        service.has_errors?(Monit::STATUS_EXEC | Monit::STATUS_NONEXIST, true).should == true
+      end
+
+      it "should has non-error status" do
+        # execution failed errors
+        service.status = Monit::STATUS_PID.to_s
+        service.status_hint = Monit::STATUS_PID.to_s
+
+        service.has_errors?.should == false
+        service.has_errors?(Monit::STATUS_PID).should == false
+      end
+    end
   end
 end
